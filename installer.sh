@@ -75,6 +75,8 @@ install_gcloud() {
     brew install --cask google-cloud-sdk
     echo 'source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"' >> ~/.zshrc
     echo 'source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"' >> ~/.zshrc
+    source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+    source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 }
 
 # PYTHON DEVELOPMENT TOOLS
@@ -84,6 +86,16 @@ install_python3() {
     brew install python
     echo "Upgrading pip..."
     pip3 install --upgrade pip
+}
+
+# Function to verify Python installation
+verify_python3_installation() {
+    echo "Verifying Python installation..."
+    if python3 --version &>/dev/null; then
+        echo "Success: Python3 is installed correctly and added to PATH."
+    else
+        echo "Warning: Python3 installation was not detected. Please ensure it is installed and added to your PATH."
+    fi
 }
 
 # Function to install Visual Studio Code
@@ -105,7 +117,7 @@ install_anaconda() {
 install_postgresql() {
     echo "Installing PostgreSQL..."
     brew install postgresql
-    brew services start postgresql
+    #brew services start postgresql
 }
 
 # Terraform
@@ -117,24 +129,26 @@ install_terraform() {
 
 # Function to verify installations
 verify_installations() {
-    echo "Verifying Python3 installation..."
+    echo "*** Python3 install being used..."
     which python3
-    echo "Verifying AWS CLI installation..."
+    echo "*** AWS CLI install being used..."
     which aws
+    echo "*** Git install being used..."
+    which git
+    echo "*** Terraform install being used..."
+    which terraform
+    echo "*** Docker install being used..."
+    which Docker
 }
 
 # Function to test installations
 test_installations() {
-    echo "Testing Python3 installation..."
-    python3 --version && echo "Python3 is installed correctly." || echo "Python3 installation issue."
-    
-    echo "Testing AWS CLI installation..."
+    echo "*** Testing AWS CLI installation..."
     aws --version && check_aws_credentials || echo "AWS CLI installation issue."
     
-    echo "Testing Google Cloud SDK installation..."
+    echo "*** Testing Google Cloud SDK installation..."
     gcloud --version && echo "Google Cloud SDK is installed correctly." || echo "Google Cloud SDK installation issue."
     
-    # Add similar checks for other tools as needed
 }
 
 
@@ -147,17 +161,17 @@ main() {
     verify_git_installation
     install_ghcli
     install_docker
+    install_awscli
+    install_gcloud
     install_python3
-    install_anaconda
+    verify_python3_installation
+    install_vscode	
+    #install_anaconda
     install_postgresql
     install_terraform
-    install_awscli
-    install_vscode
-    install_gcloud
     verify_installations
     test_installations
 }
 
 # Invoke main function
 main
-
