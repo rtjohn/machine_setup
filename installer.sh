@@ -144,6 +144,7 @@ main() {
     verify_homebrew_installation
     install_ohmyzsh
     install_git
+    verify_git_installation
     install_ghcli
     install_docker
     install_python3
