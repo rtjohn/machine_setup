@@ -9,8 +9,6 @@ install_homebrew() {
     eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
-
-
 # Oh My Zsh
 install_ohmyzsh() {
     echo "Installing Oh My Zsh..."
