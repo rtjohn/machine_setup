@@ -1,0 +1,101 @@
+#!/bin/bash
+
+# Function to install Homebrew
+install_homebrew() {
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+# Function to install Oh My Zsh
+install_ohmyzsh() {
+    echo "Installing Oh My Zsh..."
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+# Function to install Git
+install_git() {
+    echo "Installing Git..."
+    brew install git
+}
+
+# Function to install GitHub CLI
+install_ghcli() {
+    echo "Installing GitHub CLI..."
+    brew install gh
+}
+
+# Function to install Docker
+install_docker() {
+    echo "Installing Docker..."
+    brew install --cask docker
+}
+
+# Function to install Python3 and upgrade pip3
+install_python3() {
+    echo "Installing Python3..."
+    brew install python
+    echo "Upgrading pip..."
+    pip3 install --upgrade pip
+}
+
+# Function to install Anaconda
+install_anaconda() {
+    echo "Installing Anaconda..."
+    brew install --cask anaconda
+    echo 'export PATH="/usr/local/anaconda3/bin:$PATH"' >> ~/.zshrc
+    source ~/.zshrc
+}
+
+# Function to install PostgreSQL
+install_postgresql() {
+    echo "Installing PostgreSQL..."
+    brew install postgresql
+    brew services start postgresql
+}
+
+# Function to install Terraform
+install_terraform() {
+    echo "Installing Terraform..."
+    brew tap hashicorp/tap
+    brew install hashicorp/tap/terraform
+}
+
+# Function to install AWS CLI
+install_awscli() {
+    echo "Installing AWS CLI..."
+    brew install awscli
+}
+
+# Function to install Visual Studio Code
+install_vscode() {
+    echo "Installing Visual Studio Code..."
+    brew install --cask visual-studio-code
+}
+
+# Function to verify installations
+verify_installations() {
+    echo "Verifying Python3 installation..."
+    which python3
+    echo "Verifying AWS CLI installation..."
+    which aws
+}
+
+# Main function to manage installations
+main() {
+    install_homebrew
+    install_ohmyzsh
+    install_git
+    install_ghcli
+    install_docker
+    install_python3
+    install_anaconda
+    install_postgresql
+    install_terraform
+    install_awscli
+    install_vscode
+    verify_installations
+}
+
+# Invoke main function
+main
+
