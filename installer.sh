@@ -31,6 +31,15 @@ install_git() {
     brew install git
 }
 
+verify_git_installation() {
+    echo "Verifying Git installation..."
+    if git --version &>/dev/null; then
+        echo "Success: Git is installed correctly."
+    else
+        echo "Warning: Git installation was not detected. Please ensure it is installed and added to your PATH."
+    fi
+}
+
 # Docker
 install_docker() {
     echo "Installing Docker..."
