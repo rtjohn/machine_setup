@@ -7,7 +7,16 @@ install_homebrew() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/ryanjohnson/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    echo "*** Homebrew installed and added to path *** "
+}
+
+# Function to verify Homebrew installation
+verify_homebrew_installation() {
+    echo "Verifying Homebrew installation..."
+    if brew --version &>/dev/null; then
+        echo "Success: Homebrew is installed correctly and added to PATH."
+    else
+        echo "Warning: Homebrew installation was not detected. Please ensure it is installed and added to your PATH."
+    fi
 }
 
 # Oh My Zsh
