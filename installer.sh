@@ -132,6 +132,7 @@ test_installations() {
 # Main function to manage installations
 main() {
     install_homebrew
+    verify_homebrew_installation
     install_ohmyzsh
     install_git
     install_ghcli
